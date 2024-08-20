@@ -52,7 +52,7 @@ def main():
             print("Exiting...")
             break
         else:
-            print("invalid option")
+            print("invalid")
 
 if __name__ == "__main__":
     main()

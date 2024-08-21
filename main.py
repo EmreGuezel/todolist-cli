@@ -1,3 +1,22 @@
+import openpyxl
+
+def save_to_excel(tasks, filename="tasks.xlsx"):
+    # Create a workbook and a sheet
+    wb = openpyxl.Workbook()
+    sheet = wb.active
+    sheet.title = "Tasks"
+
+    # Add headers
+    sheet.append(["Task", "Status"])
+
+    # Add tasks
+    for task in tasks:
+        status = "Completed" if task["completed"] else "Continue..."
+        sheet.append([task["task"], status])
+
+    # Save the workbook
+    wb.save(filename)
+    print(f"Tasks saved to {filename}")
 
 tasks = []
 

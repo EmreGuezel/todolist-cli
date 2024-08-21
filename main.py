@@ -5,7 +5,7 @@ def menu():
     print("\nPICK ONE AND START")
     print("1. Add task")
     print("2. List task")
-    print("3. Mark task")
+    print("3. Complete task")
     print("4. Delete task")
     print("5. EXIT\n")
     
@@ -28,7 +28,7 @@ def delete(tasks):
     deleted_task = tasks.pop(task_number)
     print(f"'{deleted_task['task']}' deleted.")
     
-def mark(tasks):
+def complete(tasks):
     list_task(tasks)
     task_number = int(input("Which number u want to mark: ")) - 1
     tasks[task_number]["completed"] = True
@@ -46,7 +46,7 @@ def main():
             case "2":
                 list_task(tasks)
             case "3":
-                mark(tasks)
+                complete(tasks)
             case "4":
                 delete(tasks)
             case "5":

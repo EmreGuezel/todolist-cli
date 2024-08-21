@@ -40,19 +40,20 @@ def main():
         menu()
         choice = input("Choose one: ")
 
-        if choice == "1":
-            add(tasks)
-        elif choice == "2":
-            list_task(tasks)
-        elif choice == "3":
-            mark(tasks)
-        elif choice == "4":
-            delete(tasks)
-        elif choice == "5":
-            print("Exiting...")
-            break
-        else:
-            print("invalid")
+        match choice:
+            case "1":
+                add(tasks)
+            case "2":
+                list_task(tasks)
+            case "3":
+                mark(tasks)
+            case "4":
+                delete(tasks)
+            case "5":
+                print("Exiting...")
+                break
+            case _:
+                print("invalid")
 
 if __name__ == "__main__":
     main()

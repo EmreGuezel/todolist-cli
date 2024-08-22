@@ -1,0 +1,20 @@
+2024-08-22 20:30:31,604 - INFO - Tasks loaded from C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:37,689 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:37,744 - INFO - Task deleted: asdfgjhaskkldflþasdfasdfasdfasdfasdf
+2024-08-22 20:30:39,692 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:39,747 - INFO - Task deleted: selam
+2024-08-22 20:30:40,706 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:40,773 - INFO - Task deleted: ytastydfhjkasf
+2024-08-22 20:30:41,454 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:41,504 - INFO - Task deleted: merhaba
+2024-08-22 20:30:42,211 - WARNING - Invalid menu choice.
+2024-08-22 20:30:44,013 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:44,088 - INFO - Task deleted: EMREEEEEEEEEEE
+2024-08-22 20:30:45,488 - WARNING - Invalid task number for deletion.
+2024-08-22 20:30:52,417 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:52,479 - INFO - Task deleted: 23412
+2024-08-22 20:30:59,336 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:30:59,395 - INFO - Task added: selam 
+2024-08-22 20:31:05,642 - WARNING - Attempted to add an empty task.
+2024-08-22 20:31:11,114 - INFO - Tasks saved to C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx
+2024-08-22 20:31:11,167 - INFO - Exiting application.

@@ -1,10 +1,6 @@
+import pandas as pd
 import openpyxl
-import win32com.client as win32
 import os
-import logging
-
-# Configure logging
-logging.basicConfig(filename='tasks.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class TaskManager:
     def __init__(self, filepath):
@@ -13,27 +9,22 @@ class TaskManager:
 
     def save_to_excel(self):
         try:
+            # Create a new workbook and select the active sheet
             wb = openpyxl.Workbook()
             sheet = wb.active
             sheet.title = "Tasks"
             sheet.append(["Task", "Status"])
 
+            # Add tasks to the sheet
             for task in self.tasks:
                 status = "Completed" if task["completed"] else "Continue..."
                 sheet.append([task["task"], status])
 
+            # Save the workbook
             wb.save(self.filepath)
-            logging.info(f"Tasks saved to {self.filepath}")
-
-            # Refresh Excel file
-            excel = win32.Dispatch("Excel.Application")
-            workbook = excel.Workbooks.Open(self.filepath)
-            excel.CalculateFull()
-            workbook.Save()
-            workbook.Close()
-            excel.Quit()
+            print(f"Tasks saved to {self.filepath}")
         except Exception as e:
-            logging.error(f"Failed to save tasks: {e}")
+            print(f"Failed to save tasks: {e}")
 
     def load_from_excel(self):
         tasks = []
@@ -42,26 +33,25 @@ class TaskManager:
                 wb = openpyxl.load_workbook(self.filepath)
                 sheet = wb.active
 
+                # Load tasks from the sheet, skipping the header row
                 for row in sheet.iter_rows(min_row=2, values_only=True):
                     task, status = row
                     tasks.append({"task": task, "completed": status == "Completed"})
 
-                logging.info(f"Tasks loaded from {self.filepath}")
+                print(f"Tasks loaded from {self.filepath}")
             except Exception as e:
-                logging.error(f"Failed to load tasks: {e}")
+                print(f"Failed to load tasks: {e}")
         else:
-            logging.info(f"{self.filepath} not found. Starting with an empty task list.")
+            print(f"{self.filepath} not found. Starting with an empty task list.")
         return tasks
 
     def add_task(self, task):
         if task.strip() == "":
             print("Task cannot be empty.")
-            logging.warning("Attempted to add an empty task.")
             return
         self.tasks.append({"task": task, "completed": False})
         self.save_to_excel()
         print(f"'{task}' added.")
-        logging.info(f"Task added: {task}")
 
     def list_tasks(self):
         if not self.tasks:
@@ -71,26 +61,21 @@ class TaskManager:
                 status = "Completed" if task["completed"] else "Continue..."
                 print(f"{idx}. {task['task']} [{status}]")
 
-
     def delete_task(self, task_number):
         if 0 <= task_number < len(self.tasks):
             deleted_task = self.tasks.pop(task_number)
             self.save_to_excel()
             print(f"'{deleted_task['task']}' deleted.")
-            logging.info(f"Task deleted: {deleted_task['task']}")
         else:
             print("Invalid task number.")
-            logging.warning("Invalid task number for deletion.")
 
     def complete_task(self, task_number):
         if 0 <= task_number < len(self.tasks):
             self.tasks[task_number]["completed"] = True
             self.save_to_excel()
             print(f"'{self.tasks[task_number]['task']}' marked as completed.")
-            logging.info(f"Task completed: {self.tasks[task_number]['task']}")
         else:
             print("Invalid task number.")
-            logging.warning("Invalid task number for completion.")
 
 def menu():
     print("\nPICK ONE AND START")
@@ -101,7 +86,7 @@ def menu():
     print("5. EXIT\n")
 
 def main():
-    filepath = r"C:\Users\emreg\OneDrive\Masaüstü\deneme\todolist-cli\tasks.xlsx"
+    filepath = "tasks.xlsx"  # Save in the current directory
     task_manager = TaskManager(filepath)
 
     while True:
@@ -120,7 +105,6 @@ def main():
                 task_manager.complete_task(task_number)
             except ValueError:
                 print("Invalid input. Please enter a number.")
-                logging.warning("Invalid input for completing a task.")
         elif choice == "4":
             task_manager.list_tasks()
             try:
@@ -128,15 +112,12 @@ def main():
                 task_manager.delete_task(task_number)
             except ValueError:
                 print("Invalid input. Please enter a number.")
-                logging.warning("Invalid input for deleting a task.")
         elif choice == "5":
             task_manager.save_to_excel()
             print("Exiting...")
-            logging.info("Exiting application.")
             break
         else:
             print("Invalid choice. Please try again.")
-            logging.warning("Invalid menu choice.")
 
 if __name__ == "__main__":
     main()
